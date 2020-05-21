@@ -4,7 +4,7 @@ namespace SanboxConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
             ScrollLine sl = new ScrollLine();
@@ -12,7 +12,7 @@ namespace SanboxConsole
             sl.Max = sl.Content.Length;
             sl.Width = 15;
             sl.Current = 0;
-            char c = 'q';
+            char c;
             
             Console.SetCursorPosition(1, 1);
             Console.Write(sl.Content.Substring(sl.Current, sl.Width));
