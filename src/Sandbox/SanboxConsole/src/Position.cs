@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SanboxConsole
 {
-    public struct Position
+    public class Position
     {
 
         public Position(int r, int c)
