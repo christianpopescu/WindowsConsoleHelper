@@ -7,7 +7,13 @@ namespace SanboxConsole
         static void Main()
         {
             Text text = new Text();
-            Console.WriteLine("Hello World!");
+            ScrollLineMethod();
+
+        }
+
+        static void ScrollLineMethod()
+        {
+            Console.WriteLine("l - scroll left  :  m - scroll right : q - quit");
             ScrollLine sl = new ScrollLine();
             sl.Content = "Text to be scrolled to left or to right. This is a longer test to be done";
             sl.Max = sl.Content.Length;
