@@ -6,11 +6,14 @@ namespace SanboxConsole
     {
         static void Main()
         {
-            Text text = new Text();
+            Text text = new Text(@"E:\Temp\TempToDelete\input.txt");
             ScrollLineMethod();
 
         }
+//todo: Add Scroll function
 
+        // static void Scroll
+        
         static void ScrollLineMethod()
         {
             Console.WriteLine("l - scroll left  :  m - scroll right : q - quit");

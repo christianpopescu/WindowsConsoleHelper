@@ -19,6 +19,11 @@ namespace SanboxConsole
             this.content = content;
         }
 
+        public Text(string pathToFile)
+        {
+            content = new List<string>(System.IO.File.ReadAllLines(pathToFile));
+        }
+
         public Position Max 
         {
             get 
