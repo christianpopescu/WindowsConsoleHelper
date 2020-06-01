@@ -29,20 +29,22 @@ namespace SanboxConsole
             if (topLeftCorner.raw < text.Max.raw-1) topLeftCorner.raw++;
         }
 
-        public void Lef()
+        public void Left()
         {
             if (topLeftCorner.column > 0) topLeftCorner.column--;
         }
-        public void Righ()
+        public void Right()
         {
             if (topLeftCorner.column < text.Max.column - 1) topLeftCorner.column++;
         }
 
         public void ShowTextInView()
         {
-            for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw,size.raw); i++) 
+            Console.SetCursorPosition(2, 2);
+            for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw, size.raw); i++) 
             {
-                Console.WriteLine(text.content[i].Substring(topLeftCorner.column,size.column));
+                Console.SetCursorPosition(2, 2+i-topLeftCorner.raw);
+                Console.Write(text.content[i].SafeSubstring(topLeftCorner.column,size.column));
             }
         }
 
