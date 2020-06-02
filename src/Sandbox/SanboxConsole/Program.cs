@@ -16,9 +16,12 @@ namespace SanboxConsole
         // static void Scroll
         static void DoScrollTextBlock()
         {
+            Console.WriteLine("l - scroll left  :  m - scroll right  : p - scroll up : ':' - scroll down: q - quit");
             Text text = new Text(@"E:\Temp\TempToDelete\input.txt");
             ScrollTextBlock stb = new ScrollTextBlock(text, new Position(10, 10));
             char c;
+            Console.CursorVisible = false;
+            stb.ShowTextInView();
             Console.SetCursorPosition(1,1);
             while ((c = Console.ReadKey().KeyChar) != 'q')
             {

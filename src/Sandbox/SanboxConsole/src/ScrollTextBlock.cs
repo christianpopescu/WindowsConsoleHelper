@@ -40,12 +40,30 @@ namespace SanboxConsole
 
         public void ShowTextInView()
         {
+            ClearView();
             Console.SetCursorPosition(2, 2);
+            ConsoleColor save = Console.BackgroundColor;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw, size.raw); i++) 
             {
                 Console.SetCursorPosition(2, 2+i-topLeftCorner.raw);
                 Console.Write(text.content[i].SafeSubstring(topLeftCorner.column,size.column));
             }
+            Console.BackgroundColor = save;
+        }
+
+        public void ClearView()
+        {
+            Console.SetCursorPosition(2, 2);
+            ConsoleColor save = Console.BackgroundColor;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            String clearString = new String(' ',size.column);
+            for (int i = 0; i <  size.raw; i++) 
+            {
+                Console.SetCursorPosition(2, 2+i);
+                Console.Write(clearString);
+            }
+            Console.BackgroundColor = save;
         }
 
     }
