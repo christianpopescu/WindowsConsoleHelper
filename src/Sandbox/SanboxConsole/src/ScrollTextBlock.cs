@@ -44,7 +44,7 @@ namespace SanboxConsole
             Console.SetCursorPosition(2, 2);
             ConsoleColor save = Console.BackgroundColor;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
-            for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw, size.raw); i++) 
+            for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw, size.raw+topLeftCorner.raw); i++) 
             {
                 Console.SetCursorPosition(2, 2+i-topLeftCorner.raw);
                 Console.Write(text.content[i].SafeSubstring(topLeftCorner.column,size.column));

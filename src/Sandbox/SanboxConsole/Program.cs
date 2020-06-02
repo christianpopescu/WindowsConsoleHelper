@@ -1,13 +1,42 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace SanboxConsole
 {
     class Program
     {
+[DllImport("kernel32.dll", SetLastError = true)]
+static extern IntPtr GetConsoleWindow();
+
+[DllImport("user32.dll", SetLastError = true)]
+internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
         static void Main()
         {
             
            // ScrollLineMethod();
+/*           ShowConsoleStatistics();
+            int origWidth  = Console.WindowWidth;
+    int origHeight = Console.WindowHeight;
+    Console.WriteLine( origWidth);
+    Console.WriteLine(origHeight);
+    Console.WriteLine(Console.BufferWidth);
+    Console.WriteLine(Console.BufferHeight);
+           Console.WindowLeft = 0;
+           Console.WindowTop = 0 ;
+    Console.WriteLine(Console.IsOutputRedirected) ;
+    Console.WriteLine(Console.LargestWindowHeight);
+    Console.WriteLine(Console.LargestWindowWidth);
+    Console.BufferHeight = 120;*/
+    IntPtr ptr = GetConsoleWindow();
+    MoveWindow(ptr, 0, 0, 1000, 400, true);
+    Console.SetWindowPosition(0,0);
+    Console.WriteLine(Console.LargestWindowHeight);
+    Console.WriteLine(Console.LargestWindowWidth);
+    Console.WindowHeight = 35;
+    Console.WindowWidth = 134;
+
+//           Console.SetBufferSize(300,120);
+//           Console.SetWindowSize(25,120);
            DoScrollTextBlock();
 
         }
@@ -18,7 +47,7 @@ namespace SanboxConsole
         {
             Console.WriteLine("l - scroll left  :  m - scroll right  : p - scroll up : ':' - scroll down: q - quit");
             Text text = new Text(@"E:\Temp\TempToDelete\input.txt");
-            ScrollTextBlock stb = new ScrollTextBlock(text, new Position(10, 10));
+            ScrollTextBlock stb = new ScrollTextBlock(text, new Position(10, 15));
             char c;
             Console.CursorVisible = false;
             stb.ShowTextInView();
@@ -63,6 +92,14 @@ namespace SanboxConsole
 
                 Console.SetCursorPosition(1, 10);
             }
+        }
+
+          private static void ShowConsoleStatistics()
+        {
+            Console.WriteLine("Console statistics:");
+            Console.WriteLine("   Buffer: {0} x {1}", Console.BufferHeight, Console.BufferWidth);
+            Console.WriteLine("   Window: {0} x {1}", Console.WindowHeight, Console.WindowWidth);
+            Console.WriteLine("   Window starts at {0}.", Console.WindowLeft);
         }
     }
 }
