@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace SanboxConsole
@@ -10,6 +11,20 @@ static extern IntPtr GetConsoleWindow();
 
 [DllImport("user32.dll", SetLastError = true)]
 internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+[DllImport("user32.dll")]
+private static extern bool GetCursorPos(out Point lpPoint);
+[StructLayout(LayoutKind.Sequential)]
+public struct RECT
+{
+     public int Left;        // x position of upper-left corner
+     public int Top;         // y position of upper-left corner
+     public int Right;       // x position of lower-right corner
+     public int Bottom;      // y position of lower-right corner
+}
+
+[DllImport("user32.dll", SetLastError=true)]
+static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
         static void Main()
         {
             
@@ -35,12 +50,14 @@ internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, in
     Console.WindowHeight = 35;
     Console.WindowWidth = 134;
 
+
+
 //           Console.SetBufferSize(300,120);
 //           Console.SetWindowSize(25,120);
            DoScrollTextBlock();
 
         }
-//todo: Add Scroll function
+
 
         // static void Scroll
         static void DoScrollTextBlock()
@@ -48,6 +65,7 @@ internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, in
             Console.WriteLine("l - scroll left  :  m - scroll right  : p - scroll up : ':' - scroll down: q - quit");
             Text text = new Text(@"E:\Temp\TempToDelete\input.txt");
             ScrollTextBlock stb = new ScrollTextBlock(text, new Position(10, 15));
+            Point mousePoint = default;
             char c;
             Console.CursorVisible = false;
             stb.ShowTextInView();
@@ -64,6 +82,12 @@ internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, in
 
                 }
                 stb.ShowTextInView();
+
+                GetCursorPos(out mousePoint);
+                // TODO: compute mouse poshttps://stackoverflow.com/questions/1944481/console-app-mouse-click-x-y-coordinate-detection-comparisonition into window
+                // 
+                Console.SetCursorPosition(20,20);
+                Console.WriteLine("{0}  {1}", mousePoint.X, mousePoint.Y);
                 Console.SetCursorPosition(1,1);
             }
  
