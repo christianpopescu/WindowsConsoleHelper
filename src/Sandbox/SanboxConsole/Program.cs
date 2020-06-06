@@ -68,6 +68,7 @@ static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
             Point mousePoint = default;
             char c;
             Console.CursorVisible = false;
+            stb.ShowBox();
             stb.ShowTextInView();
             Console.SetCursorPosition(1,1);
             while ((c = Console.ReadKey().KeyChar) != 'q')
