@@ -67,18 +67,19 @@ static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
             ScrollTextBlock stb = new ScrollTextBlock(text, new Position(10, 15));
             Point mousePoint = default;
             char c;
+            ConsoleKey ck;
             Console.CursorVisible = false;
             stb.ShowBox();
             stb.ShowTextInView();
             Console.SetCursorPosition(1,1);
-            while ((c = Console.ReadKey().KeyChar) != 'q')
+            while ((ck = Console.ReadKey().Key) != ConsoleKey.Q)
             {
-                switch(c)
+                switch(ck)
                 {
-                    case 'l' : stb.Left(); break;
-                    case 'm' : stb.Right(); break;
-                    case 'p' : stb.Up(); break;
-                    case ':' : stb.Down(); break;
+                    case ConsoleKey.LeftArrow: stb.Left(); break;
+                    case  ConsoleKey.RightArrow : stb.Right(); break;
+                    case  ConsoleKey.UpArrow : stb.Up(); break;
+                    case ConsoleKey.DownArrow : stb.Down(); break;
                     default : break;
 
                 }
