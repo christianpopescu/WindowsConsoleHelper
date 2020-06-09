@@ -54,10 +54,35 @@ static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
 //           Console.SetBufferSize(300,120);
 //           Console.SetWindowSize(25,120);
-           DoScrollTextBlock();
+           
+           //DoScrollTextBlock();
+           InputLine();
 
         }
 
+static void InputLine(){
+            Console.SetCursorPosition(1,1);
+            ConsoleKey ck;
+            char c = 'x';
+            Func<ConsoleKey> le = () => {var cc = Console.ReadKey(true); c = cc.KeyChar; return cc.Key;};
+            Console.CursorVisible = false;
+            Position positionToWrite = new Position(10,10);
+            while ((ck = le())!= ConsoleKey.Q)
+            {
+                
+                switch(ck)
+                {
+                    case ConsoleKey.LeftArrow: ConsoleExtension.WriteAt(positionToWrite, true, "Left   "); break;
+                    case  ConsoleKey.RightArrow : ConsoleExtension.WriteAt(positionToWrite, true,"Right   ");; break;
+                    case  ConsoleKey.UpArrow : ConsoleExtension.WriteAt(positionToWrite, true,"Up   "); break;
+                    case ConsoleKey.DownArrow : ConsoleExtension.WriteAt(positionToWrite, true,"Down   "); break;
+                    default :  Console.SetCursorPosition(11,11); Console.Write(c); break;
+
+                }
+              
+                Console.SetCursorPosition(1,1);
+            }
+}
 
         // static void Scroll
         static void DoScrollTextBlock()
