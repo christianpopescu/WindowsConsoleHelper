@@ -21,21 +21,21 @@ namespace SanboxConsole
 
         public void Up()
         {
-            if (topLeftCorner.raw > 0) topLeftCorner.raw--;
+            if (topLeftCorner.Raw > 0) topLeftCorner.Raw--;
         }
 
         public void Down()
         {
-            if (topLeftCorner.raw < text.Max.raw-1) topLeftCorner.raw++;
+            if (topLeftCorner.Raw < text.Max.Raw-1) topLeftCorner.Raw++;
         }
 
         public void Left()
         {
-            if (topLeftCorner.column > 0) topLeftCorner.column--;
+            if (topLeftCorner.Column > 0) topLeftCorner.Column--;
         }
         public void Right()
         {
-            if (topLeftCorner.column < text.Max.column - 1) topLeftCorner.column++;
+            if (topLeftCorner.Column < text.Max.Column - 1) topLeftCorner.Column++;
         }
 
         public void ShowTextInView()
@@ -44,10 +44,10 @@ namespace SanboxConsole
             Console.SetCursorPosition(5, 5);
             ConsoleColor save = Console.BackgroundColor;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
-            for (int i = topLeftCorner.raw; i < Math.Min(text.Max.raw, size.raw+topLeftCorner.raw); i++) 
+            for (int i = topLeftCorner.Raw; i < Math.Min(text.Max.Raw, size.Raw+topLeftCorner.Raw); i++) 
             {
-                Console.SetCursorPosition(5, 5+i-topLeftCorner.raw);
-                Console.Write(text.content[i].SafeSubstring(topLeftCorner.column,size.column));
+                Console.SetCursorPosition(5, 5+i-topLeftCorner.Raw);
+                Console.Write(text.content[i].SafeSubstring(topLeftCorner.Column,size.Column));
             }
             Console.BackgroundColor = save;
         }
@@ -57,8 +57,8 @@ namespace SanboxConsole
             Console.SetCursorPosition(5, 5);
             ConsoleColor save = Console.BackgroundColor;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
-            String clearString = new String(' ',size.column);
-            for (int i = 0; i <  size.raw; i++) 
+            String clearString = new String(' ',size.Column);
+            for (int i = 0; i <  size.Raw; i++) 
             {
                 Console.SetCursorPosition(5, 5+i);
                 Console.Write(clearString);
@@ -70,8 +70,8 @@ namespace SanboxConsole
         {
             int top = 5-1;
             int left = 5-1;
-            int bottom = 5-1+size.column+1;
-            int right = 5-1 + size.raw+1;
+            int bottom = 5-1+size.Column+1;
+            int right = 5-1 + size.Raw+1;
             // TODO: To fix top left bottom right
             Console.SetCursorPosition(top,left);
             Console.Write(Convert.ToChar(0x250c));
@@ -82,9 +82,9 @@ namespace SanboxConsole
             Console.SetCursorPosition(bottom, left);
             Console.Write(Convert.ToChar(0x2510));
             Console.SetCursorPosition(top+1,left);
-            Console.Write(new String(Convert.ToChar(0x2500),size.column));
+            Console.Write(new String(Convert.ToChar(0x2500),size.Column));
              Console.SetCursorPosition(top+1,right);
-            Console.Write(new String(Convert.ToChar(0x2500),size.column)); 
+            Console.Write(new String(Convert.ToChar(0x2500),size.Column)); 
             for (int i=left+1; i<right; ++i)
             {
                 Console.SetCursorPosition(top,i);

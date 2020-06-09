@@ -31,10 +31,10 @@ namespace SanboxConsole
                 if (_max == null)
                 {
                     _max = new Position(0,0);
-                    _max.raw = content.Count;
-                    _max.column = 0;
+                    _max.Raw = content.Count;
+                    _max.Column = 0;
                     foreach (var s in content)
-                        if (_max.column < s.Length) _max.column = s.Length;
+                        if (_max.Column < s.Length) _max.Column = s.Length;
                 }
                 return _max;
 

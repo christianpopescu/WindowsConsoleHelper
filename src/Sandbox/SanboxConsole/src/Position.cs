@@ -7,12 +7,13 @@ namespace SanboxConsole
     public class Position
     {
 
+        public Position():this(0,0) {}
         public Position(int r, int c)
         { 
-            raw = r;
-            column = c;
+            Raw = r;
+            Column = c;
         }
-        public int raw;
-        public int column;
+        public int Raw {get; set;}
+        public int Column {get; set;}
     }
 }

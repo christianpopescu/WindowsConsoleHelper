@@ -10,11 +10,11 @@ namespace SanboxConsole
            {
                save = new Position(Console.CursorTop,Console.CursorLeft);
            }
-           Console.SetCursorPosition(pos.raw, pos.column);
+           Console.SetCursorPosition(pos.Raw, pos.Column);
            Console.WriteLine(toWrite);
            if (keepCursorPosition)
            {
-               Console.SetCursorPosition(save.column,save.raw);
+               Console.SetCursorPosition(save.Column,save.Raw);
            }
 
         }
